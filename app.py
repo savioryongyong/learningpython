@@ -201,4 +201,9 @@ class Model(dict):
 			logging.warn('failed to insert record: affected rows:%s' % rows)
 
 
+class ANewObject(object):
+	def __init__(self):
+		pass
+
+
 

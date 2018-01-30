@@ -246,28 +246,3 @@ class ModelMetaclass(type):
 		attrs['__update__'] = 'update `%s`set %s where `%s`=?' % (tableName, ', '.join(map(lambda f: '`%s`=?' % (mappings.get(f).name or f), fields)), primaryKey)
 		attrs['__delete__'] = 'delete from "%s" where `%s` = ?' %(tableName,primaryKey)
 		return type.__new__(cls,name,bases,attrs)
-<<<<<<< HEAD
-=======
-
-class Model(dict):
-
-	@classmethod
-	@asyncio.coroutine
-	def find(cls,pk):
-		'find object by primary key'
-		rs= yield from select('%s where "%s" = ?' % (cls.__select__, cls.__primary_key__),[pk],1)
-		if len(rs) == 0:
-			return None
-		return cls(**rs[0])
-
-
-class Model(dict):
-
-	@asyncio.coroutine
-	def save(self):
-		args = list(map(self.getValueOrDefault, self.__fields__))
-		args.append(self.getValueOrDefault(self.__primary_key__))
-		rows = yield from execute(self.__insert__,args)
-		if rows != 1:
-			logging.warn('failed to insert record: affected rows:%s' % rows)
->>>>>>> 365b1b6f2b47ea9ec706e38cd3764f0ae58f48a5

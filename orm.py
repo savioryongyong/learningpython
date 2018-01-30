@@ -92,8 +92,6 @@ class ModelMetaclass(type):
 
 class Model(dict):
 
-	...
-
 	@classmethod
 	@asyncio.coroutine
 	def find(cls,pk):
@@ -105,8 +103,6 @@ class Model(dict):
 
 
 class Model(dict):
-
-	...
 
 	@asyncio.coroutine
 	def save(self):
